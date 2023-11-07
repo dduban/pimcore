@@ -1,56 +1,43 @@
-# Pimcore Project Skeleton 
+# Instructions for installation and configuration of the project
 
-This skeleton should be used by experienced Pimcore developers for starting a new project from the ground up. 
-If you are new to Pimcore, it's better to start with our demo package, listed below 😉
+Here is a short user manual for installing, configuring and running the **Pimcore** project, including importing data and running the integration.
 
-## Getting started
-```bash
-COMPOSER_MEMORY_LIMIT=-1 composer create-project pimcore/skeleton my-project
-cd ./my-project
-./vendor/bin/pimcore-install
-```
 
-- Point your virtual host to `my-project/public` 
-- Open https://your-host/admin in your browser
-- Done! 😎
+#Files
 
-## Docker
+A chapter covering the preparation of project files.
 
-You can also use Docker to set up a new Pimcore Installation.
-You don't need to have a PHP environment with composer installed.
+## Prepare the environment
 
-### Prerequisites
+1. Make sure you have Docker installed on your system.
+    
+2. Copy the Pimcore and docker-compose project files to a selected location on your computer.
 
-* Your user must be allowed to run docker commands (directly or via sudo).
-* You must have docker compose installed.
-* Your user must be allowed to change file permissions (directly or via sudo).
+## Project Launch
 
-### Follow these steps
-1. Initialize the skeleton project using the `pimcore/pimcore` image
-``docker run -u `id -u`:`id -g` --rm -v `pwd`:/var/www/html pimcore/pimcore:php8.2-latest composer create-project pimcore/skeleton my-project``
+1. Open a terminal or command prompt and navigate to the directory where the Pimcore project files and docker-compose file are located.
+    
+2. Start the Docker containers by typing the following command:
+>docker-compose up -d
 
-2. Go to your new project
-`cd my-project/`
+This command will launch Pimcore containers, databases, and other project components.
+## Admin panel and data import
 
-3. Part of the new project is a docker compose file
-    * Run `sed -i "s|#user: '1000:1000'|user: '$(id -u):$(id -g)'|g" docker-compose.yaml` to set the correct user id and group id.
-    * Start the needed services with `docker compose up -d`
+1. Once the containers have finished running, open a web browser and go to:
+>http://localhost/admin
+2. Log in to the Pimcore administration panel.
+> admin:admin
+3. In the administration panel, go to the "Datahub" section.
+4. Use the prepared configurations to import data.
+    
+4. Start the data import process.
 
-4. Install pimcore and initialize the DB
-    `docker compose exec php vendor/bin/pimcore-install`
-    * When asked for admin user and password: Choose freely
-    * This can take a while, up to 20 minutes
-    * If you select to install the SimpleBackendSearchBundle please make sure to add the `pimcore_search_backend_message` to your `.docker/supervisord.conf` file.
+# SQL import
 
-5. Run codeception tests:
-   * `docker compose run --user=root --rm test-php chown -R $(id -u):$(id -g) var/ public/var/`
-   * `docker compose run --rm test-php vendor/bin/pimcore-install -n`
-   * `docker compose run --rm test-php vendor/bin/codecept run -vv`
+Make sure the database container is running. If it isn't, you can run it using Docker or another database management tool.
 
-6. :heavy_check_mark: DONE - You can now visit your pimcore instance:
-    * The frontend: <http://localhost>
-    * The admin interface, using the credentials you have chosen above:
-      <http://localhost/admin>
+## Import Data from SQL File
 
-## Other demo/skeleton packages
-- [Pimcore Basic Demo](https://github.com/pimcore/demo)
+1. Open a terminal or command prompt and navigate to the directory where the SQL file is located.
+2. Use the appropriate command to import the data from the SQL file into the database.
+>mysql -u username -p database_name < file.sql
