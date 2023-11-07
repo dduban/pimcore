@@ -1,3 +1,5 @@
+> Live demo: http://pimcore.pj.usermd.net/admin/
+
 # Instructions for installation and configuration of the project
 
 Here is a short user manual for installing, configuring and running the **Pimcore** project, including importing data and running the integration.
