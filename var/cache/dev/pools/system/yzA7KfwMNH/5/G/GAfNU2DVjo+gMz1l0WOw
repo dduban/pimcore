@@ -1,0 +1,53 @@
+<?php //Pimcore%255CBundle%255CDataImporterBundle%255CController%255CPushImportController%2523pushAction
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Symfony\\Component\\Routing\\Annotation\\Route'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\Routing\\Annotation\\Route')),
+    ],
+    null,
+    [
+        'Symfony\\Component\\Routing\\Annotation\\Route' => [
+            'path' => [
+                '/pimcore-datahub-import/{config}/push',
+            ],
+            'methods' => [
+                [
+                    'POST',
+                ],
+            ],
+            'schemes' => [
+                [],
+            ],
+            'name' => [
+                'data_hub_data_importer_push',
+            ],
+            'requirements' => [
+                [
+                    'config' => '[\\w-]+',
+                ],
+            ],
+            'options' => [
+                [],
+            ],
+            'defaults' => [
+                [],
+            ],
+            'host' => [
+                null,
+            ],
+            'condition' => [
+                null,
+            ],
+            'priority' => [
+                null,
+            ],
+            'env' => [
+                null,
+            ],
+        ],
+    ],
+    [
+        $o[0],
+    ],
+    []
+); }];
