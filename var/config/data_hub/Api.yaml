@@ -1,0 +1,102 @@
+pimcore_data_hub:
+    configurations:
+        Api:
+            general:
+                active: true
+                type: dataImporterDataObject
+                name: Api
+                description: ''
+                group: ''
+                path: null
+                modificationDate: 1699378339
+                createDate: 1699305661
+            loaderConfig:
+                type: http
+                settings:
+                    schema: 'https://'
+                    url: jsonplaceholder.typicode.com/todos/
+            interpreterConfig:
+                type: json
+            resolverConfig:
+                elementType: dataObject
+                dataObjectClassId: '4'
+                loadingStrategy:
+                    type: id
+                    settings:
+                        dataSourceIndex: id
+                createLocationStrategy:
+                    type: staticPath
+                    settings:
+                        path: /api
+                locationUpdateStrategy:
+                    type: noChange
+                publishingStrategy:
+                    type: noChangeUnpublishNew
+            processingConfig:
+                executionType: parallel
+                idDataIndex: id
+                doDeltaCheck: true
+                cleanup:
+                    doCleanup: true
+                    strategy: delete
+            mappingConfig:
+                -
+                    label: userId
+                    dataSourceIndex:
+                        - userId
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: userId
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: id
+                    dataSourceIndex:
+                        - id
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: idApi
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: title
+                    dataSourceIndex:
+                        - title
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: title
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+                -
+                    label: completed
+                    dataSourceIndex:
+                        - completed
+                    transformationResultType: default
+                    dataTarget:
+                        type: direct
+                        settings:
+                            fieldName: completed
+                            language: ''
+                            writeIfTargetIsNotEmpty: true
+                            writeIfSourceIsEmpty: true
+                    transformationPipeline: {  }
+            executionConfig:
+                scheduleType: recurring
+                cronDefinition: '*/15 * * * *'
+                scheduledAt: ''
+            permissions:
+                user: {  }
+                role: {  }
+            workspaces: {  }
